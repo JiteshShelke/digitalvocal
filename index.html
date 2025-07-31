@@ -43,93 +43,6 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="./assets/css/style.css" rel="stylesheet">
-    <style>
-        /* Ensure dropdowns can overflow the collapsed navbar on mobile */
-        .navbar .navbar-collapse {
-            overflow: visible;
-        }
-
-        /* Base mega dropdown styles (mobile-first) */
-        .navbar .dropdown.mega {
-            position: static;
-        }
-
-        /* anchor under navbar row */
-        .navbar .dropdown.mega .dropdown-menu.mega-menu {
-            position: static;
-            /* mobile: flow inside collapse */
-            width: 100%;
-            border: 0;
-            box-shadow: none;
-            /* no shadow inside mobile menu */
-        }
-
-        /* 5-col responsive grid INSIDE the mega */
-        .mega-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            /* phones */
-            gap: 1rem 1.5rem;
-        }
-
-        @media (min-width: 576px) {
-            .mega-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 768px) {
-            .mega-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (min-width: 992px) {
-            .mega-grid {
-                grid-template-columns: repeat(5, minmax(0, 1fr));
-            }
-        }
-
-        /* Tidy items & headings */
-        .mega-menu .dropdown-item {
-            white-space: normal;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .mega-menu h6 {
-            letter-spacing: .04em;
-            margin-bottom: .75rem;
-        }
-
-        /* DESKTOP (≥992px): make it a wide popover centered under the navbar item */
-        @media (min-width: 992px) {
-            .navbar .dropdown.mega .dropdown-menu.mega-menu {
-                position: absolute;
-                /* popover */
-                left: 50%;
-                transform: translateX(-50%);
-                top: 100%;
-                width: 100%;
-                max-width: 1200px;
-                /* adjust or set to none */
-                padding: 1.25rem 1.5rem;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
-                display: block;
-                /* allow visibility transition */
-                visibility: hidden;
-                opacity: 0;
-                transition: opacity .15s ease, visibility .15s ease;
-                background: #fff;
-                z-index: 1030;
-            }
-
-            .navbar .dropdown.mega.show .dropdown-menu.mega-menu {
-                visibility: visible;
-                opacity: 1;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -173,7 +86,7 @@
                                     <!-- Col 1 -->
                                     <div class="mega-col">
                                         <h6 class="text-uppercase font-weight-bold mb-3">Digital Marteking</h6>
-                                        <a href="seo-agency-in-mumbai.html" class="dropdown-item px-0">Search Engine
+                                        <a href="./seo-agency-in-mumbai.html" class="dropdown-item px-0">Search Engine
                                             Optimization</a>
                                         <a href="./Creative-Writing.html" class="dropdown-item px-0">Socail Media
                                             Marketing</a>
@@ -254,15 +167,21 @@
                                     </div>
                                     <div class="mega-col">
                                         <h6 class="text-uppercase font-weight-bold mb-3">Elearning</h6>
-                                        <a href="./brandawareness.html#social" class="dropdown-item px-0">Legacy Course modernization</a>
-                                        <a href="./brandawareness.html#email" class="dropdown-item px-0">Custom Learning  Templates Design Branded Slides </a>
-                                        <a href="./brandawareness.html#seo" class="dropdown-item px-0">Cross Platform Content Migration 
+                                        <a href="./brandawareness.html#social" class="dropdown-item px-0">Legacy Course
+                                            modernization</a>
+                                        <a href="./brandawareness.html#email" class="dropdown-item px-0">Custom Learning
+                                            Templates Design Branded Slides </a>
+                                        <a href="./brandawareness.html#seo" class="dropdown-item px-0">Cross Platform
+                                            Content Migration
                                         </a>
-                                        <a href="./brandawareness.html#landing" class="dropdown-item px-0">Standards Based content Export learning Models
+                                        <a href="./brandawareness.html#landing" class="dropdown-item px-0">Standards
+                                            Based content Export learning Models
                                         </a>
-                                        <a href="./brandawareness.html#landing" class="dropdown-item px-0">Gamified Learning experiences 
+                                        <a href="./brandawareness.html#landing" class="dropdown-item px-0">Gamified
+                                            Learning experiences
                                         </a>
-                                        <a href="./brandawareness.html#landing" class="dropdown-item px-0">Accessibillity ready learning
+                                        <a href="./brandawareness.html#landing"
+                                            class="dropdown-item px-0">Accessibillity ready learning
                                         </a>
                                     </div>
 
@@ -286,71 +205,6 @@
         </nav>
     </div>
     <!-- Navbar End -->
-    <script>
-        (function () {
-            var mq = window.matchMedia('(min-width: 992px)'); // desktop breakpoint
-            var mega = document.getElementById('servicesMega');
-            if (!mega) return;
-
-            var link = document.getElementById('servicesLink');
-            var menu = mega.querySelector('.dropdown-menu');
-
-            var openTimer, closeTimer;
-
-            function openMega() {
-                clearTimeout(closeTimer);
-                openTimer = setTimeout(function () {
-                    mega.classList.add('show');
-                    menu.classList.add('show');
-                    link.setAttribute('aria-expanded', 'true');
-                }, 80);
-            }
-            function closeMega() {
-                clearTimeout(openTimer);
-                closeTimer = setTimeout(function () {
-                    mega.classList.remove('show');
-                    menu.classList.remove('show');
-                    link.setAttribute('aria-expanded', 'false');
-                }, 140);
-            }
-
-            // Desktop: hover + optional click toggle
-            function enableDesktop() {
-                mega.addEventListener('mouseenter', openMega);
-                mega.addEventListener('mouseleave', closeMega);
-                link.addEventListener('focus', openMega);
-                menu.addEventListener('focusin', openMega);
-                menu.addEventListener('focusout', function (e) {
-                    if (!mega.contains(e.relatedTarget)) closeMega();
-                });
-                // Desktop click toggle
-                link.addEventListener('click', desktopClick, { passive: false });
-            }
-            function disableDesktop() {
-                mega.removeEventListener('mouseenter', openMega);
-                mega.removeEventListener('mouseleave', closeMega);
-                link.removeEventListener('click', desktopClick);
-            }
-            function desktopClick(e) {
-                if (mq.matches) {
-                    e.preventDefault(); // stop navigating to "#"
-                    mega.classList.contains('show') ? closeMega() : openMega();
-                }
-            }
-
-            // Mobile/Tablet: let Bootstrap handle via data-*; just keep ARIA in sync
-            document.addEventListener('shown.bs.dropdown', function (ev) {
-                if (mega.contains(ev.target)) link.setAttribute('aria-expanded', 'true');
-            });
-            document.addEventListener('hidden.bs.dropdown', function (ev) {
-                if (mega.contains(ev.target)) link.setAttribute('aria-expanded', 'false');
-            });
-
-            function applyMode() { mq.matches ? enableDesktop() : disableDesktop(); }
-            applyMode();
-            window.addEventListener('resize', applyMode);
-        })();
-    </script>
 
 
 
@@ -549,23 +403,36 @@
         <div class="row mx-0 justify-content-center" style="margin-top: -200px;">
             <div class="col-lg-6 col-md-8 col-sm-10 px-0">
                 <div class="contact-form bg-white rounded p-5">
-                    <div id="success"></div>
-                    <form name="sentMessage" id="contactForm" action="forms/contact.php" method="post"
+
+                    <!-- Success / Error Messages -->
+                    <div id="contactFormStatus" class="my-3"></div>
+                    <div id="quoteSuccessMsg" class="alert alert-success"
+                        style="display:none; background:#FFAA17; color:#222; border:none; text-align:center;">
+                        Your message has been sent successfully!
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form name="sentMessage" id="contactForm"
+                        action="https://formsubmit.co/ajax/jitesh.trueview@gmail.com" method="POST"
                         novalidate="novalidate">
+
+                        <!-- Hidden Inputs -->
+                        <input type="hidden" name="_subject" value="New Website Contact Enquiry">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="formsource" value="contact-main-form">
+
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="control-group">
                                     <input type="text" class="form-control bg-light border-0 p-4" id="name" name="name"
-                                        placeholder="Your Name" required="required"
-                                        data-validation-required-message="Please enter your name" />
+                                        placeholder="Your Name" required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="control-group">
                                     <input type="email" class="form-control bg-light border-0 p-4" id="email"
-                                        name="email" placeholder="Your Email" required="required"
-                                        data-validation-required-message="Please enter your email" />
+                                        name="email" placeholder="Your Email" required>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -573,15 +440,13 @@
 
                         <div class="control-group">
                             <input type="text" class="form-control bg-light border-0 p-4" id="subject" name="subject"
-                                placeholder="Subject" required="required"
-                                data-validation-required-message="Please enter a subject" />
+                                placeholder="Subject" required>
                             <p class="help-block text-danger"></p>
                         </div>
 
                         <div class="control-group">
                             <textarea class="form-control bg-light border-0 py-3 px-4" rows="5" id="message"
-                                name="message" placeholder="Message" required="required"
-                                data-validation-required-message="Please enter your message"></textarea>
+                                name="message" placeholder="Message" required></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
 
@@ -600,44 +465,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Contact Form AJAX Script -->
-    <script>
-        $("#contactForm").submit(function (e) {
-            e.preventDefault(); // prevent default form submit
 
-            var formData = new FormData(this);
-
-            $.ajax({
-                url: 'forms/contact.php',
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                dataType: 'json', // expecting JSON response
-
-                success: function (response) {
-                    if (response.status === 'success') {
-                        $("#contactFormStatus").html('<div class="alert alert-success">' + response.message + '</div>');
-                        $("#contactForm")[0].reset(); // reset form
-                    } else {
-                        $("#contactFormStatus").html('<div class="alert alert-danger">' + response.message + '</div>');
-                    }
-                },
-
-                error: function (xhr) {
-                    var res;
-                    try {
-                        res = JSON.parse(xhr.responseText);
-                    } catch (e) {
-                        res = { message: "Something went wrong. Please try again later." };
-                    }
-                    $("#contactFormStatus").html('<div class="alert alert-danger">' + res.message + '</div>');
-                }
-            });
-        });
-    </script>
-
-
-
+   
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-white-50 px-sm-3 px-md-5">
@@ -743,6 +572,8 @@
     <!-- Template Javascript -->
     <!-- <script src="js/main.js"></script> -->
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/contact-us.js"></script>
+
 
     <div id="cookie-popup" style="
   position: fixed;
